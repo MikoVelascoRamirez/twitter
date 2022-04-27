@@ -34,4 +34,16 @@ describe("Test suite for USER Class", () =>{
         expect(usuario.getLastUpdated).not.toBeUndefined();
     });
 
+    //Requerimiento 4: Cada objeto necesita los siguientes setters: `setUsername` y `setBio`, para actualizar dichas propiedades.
+
+    test("4) Add setters", () => {
+        const usuario = new User(100, "mikovelra", "Miguel Arturo", "Miko's biography"); 
+
+        usuario.setUsername = "MikoVelRam"
+        usuario.setBio = "Aquí no hay info"
+
+        expect(usuario.getUsername).toBe("MikoVelRam");        
+        expect(usuario.getBio).toBe("Aquí no hay info");
+    });
+
 });
