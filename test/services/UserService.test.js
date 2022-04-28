@@ -32,4 +32,14 @@ describe("Tests for UserService", () => {
     expect(userInfoList[5]).not.toBeUndefined();
   });
 
+  //Requerimiento 3: Agregar un nuevo método estático en `UserService` llamado `updateUserUsername`, que reciba un objeto de la clase `User` y un nuevo string, que actualizará el valor de `username`. 
+
+  test("3) Updating user username", () => {
+    const user = UserService.create(2, "Gerry", "Gerard");
+    const newUsername = "Gerry3FCB"
+    UserService.updateUserUsername(user, newUsername);
+
+    expect(user.username).toBe(newUsername);
+  });
+
 });
