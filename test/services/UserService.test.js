@@ -30,6 +30,10 @@ describe("Tests for UserService", () => {
     //Revisamos si los datos de tipo fecha no están indefinidos
     expect(userInfoList[4]).not.toBeUndefined();
     expect(userInfoList[5]).not.toBeUndefined();
+
+    //NEW: Revisando si los datos de tipo fecha son de tipo objeto
+    expect(typeof userInfoList[4]).toBe("object");
+    expect(typeof userInfoList[5]).toBe("object");
   });
 
   //Requerimiento 3: Agregar un nuevo método estático en `UserService` llamado `updateUserUsername`, que reciba un objeto de la clase `User` y un nuevo string, que actualizará el valor de `username`. 

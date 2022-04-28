@@ -14,9 +14,7 @@ class UserService{
     }
 
     static getAllUsernames(list){
-        return list.map(function(usuario){
-            return usuario.username;
-        })
+        return list.map( usuario => usuario.username )
     }
 }
 
