@@ -6,13 +6,30 @@ describe("Tests for UserService", () => {
 
     /* Requerimiento 1: Crear un nuevo usuario con lo ya definido en el sprint anterior, usando una nueva clase llamada `UserService`.
 
-    Criterios de aceptación:
-    1. Esta clase deberá tener un método `create` que se pueda usar sin instanciar (static method), y que reciba solo los parámetros del `id`, `username` y `name`.
-    2. El valor de `bio` deberá ser por default para todos los `user` creados. */
+        Criterios de aceptación:
+        1. Esta clase deberá tener un método `create` que se pueda usar sin instanciar (static method), y que reciba solo los parámetros del `id`, `username` y `name`.
+        2. El valor de `bio` deberá ser por default para todos los `user` creados. */
 
     expect(user.id).toBe(1);
     expect(user.username).toBe("mikovelra");
     expect(user.name).toBe("Miguel Arturo");
     expect(user.bio).not.toBeUndefined();
   });
+
+  //Requerimiento 2: Agregar un nuevo método estático en `UserService` llamado `getInfo` que al recibir un objeto de la clase `User`, me regrese una lista con todos los valores de los atributos de dicho objeto.
+
+  test("2) Getting user data in a list", () => {
+    const user = UserService.create(1, "mikovelra", "Miguel Arturo");
+    const userInfoList = UserService.getInfo(user);
+
+    expect(userInfoList[0]).toBe(1);
+    expect(userInfoList[1]).toBe("mikovelra");
+    expect(userInfoList[2]).toBe("Miguel Arturo");
+    expect(userInfoList[3]).toBe("Sin bio");
+
+    //Revisamos si los datos de tipo fecha no están indefinidos
+    expect(userInfoList[4]).not.toBeUndefined();
+    expect(userInfoList[5]).not.toBeUndefined();
+  });
+
 });
