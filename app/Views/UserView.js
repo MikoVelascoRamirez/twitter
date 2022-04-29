@@ -12,6 +12,10 @@ class UserView {
         } else if (Object.values(payload).some(value => value === null)) {
             return {error: "necesitan tener un valor válido"};
         }
+        else{
+            const {id, username, name} = payload;
+            return userService.create(id, username, name)
+        }
     }
   }
 }
