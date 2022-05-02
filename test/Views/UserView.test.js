@@ -6,7 +6,7 @@ describe("Tests for User View", () => {
     test("1) Return an error object when try to create a user with a null payload", () => {
         const payload = null;
         const create_User = UserView.createUser(payload);
-        expect(create_User.error).toMatch(/payload no existe/);
+        expect(create_User.error).toMatch(/necesita tener un valor válido/);
     });
 
     //2. Valida que un `payload` contenga en alguna de las llaves `username`, `name`, o `id` un valor en `null`. Si hay un valor `null` regresa un objeto con la llave `error` y que indique el texto: `necesitan tener un valor válido`.
@@ -14,7 +14,7 @@ describe("Tests for User View", () => {
     test("2) Return an error if some of Payload's keys contains a null value", () => {
         const payload = {id: 2, username: null, name: "Didí"};
         const createUser = UserView.createUser(payload);
-        expect(createUser.error).toMatch(/necesitan tener un valor válido 1/);
+        expect(createUser.error).toMatch(/necesita tener un valor válido/);
     });
 
     //3. Valida que un `payload` con algunas de las propiedades necesarias regrese un objeto con la llave `error` indicando `necesitan tener un valor válido`.
@@ -22,7 +22,7 @@ describe("Tests for User View", () => {
     test("3) Return an error object when try to create a new user with a payload with missing properties", () => {
         const payload = {username: "username"};
         const createUser = UserView.createUser(payload);
-        expect(createUser.error).toMatch(/necesitan tener un valor válido 2/);
+        expect(createUser.error).toMatch(/necesita tener un valor válido/);
     });
 
     //4. Verifica que se pueda crear un objeto `User`, al enviar un payload con las siguientes propiedades: `username`, `id` y `name`.
@@ -40,6 +40,6 @@ describe("Tests for User View", () => {
         //const payload = {id: 4, username: "Pablito32", name: "Pablo"};
         const payload = 254;
         const userCreated = UserView.createUser(payload);
-        expect(userCreated.error).toMatch(/el payload recibido no es válido/);
+        expect(userCreated.error).toMatch(/necesita tener un valor válido/);
     });
 });
