@@ -14,7 +14,7 @@ describe("Tests for User View", () => {
     test("2) Return an error if some of Payload's keys contains a null value", () => {
         const payload = {id: 2, username: null, name: "Didí"};
         const createUser = UserView.createUser(payload);
-        expect(createUser.error).toMatch(/necesitan tener un valor válido/);
+        expect(createUser.error).toMatch(/necesitan tener un valor válido 1/);
     });
 
     //3. Valida que un `payload` con algunas de las propiedades necesarias regrese un objeto con la llave `error` indicando `necesitan tener un valor válido`.
@@ -22,7 +22,7 @@ describe("Tests for User View", () => {
     test("3) Return an error object when try to create a new user with a payload with missing properties", () => {
         const payload = {username: "username"};
         const createUser = UserView.createUser(payload);
-        expect(createUser.error).toMatch(/necesitan tener un valor válido/);
+        expect(createUser.error).toMatch(/necesitan tener un valor válido 2/);
     });
 
     //4. Verifica que se pueda crear un objeto `User`, al enviar un payload con las siguientes propiedades: `username`, `id` y `name`.
@@ -33,5 +33,13 @@ describe("Tests for User View", () => {
         expect(userCreated.id).toBe(5)
         expect(userCreated.username).toBe("some user")
         expect(userCreated.name).toBe("user")
+    });
+
+    //5. Verificar que el payload recibido sea de tipo literal object y no un arreglo
+    test("5) Returning an error if the payload is not a literal object", () => {
+        //const payload = {id: 4, username: "Pablito32", name: "Pablo"};
+        const payload = 254;
+        const userCreated = UserView.createUser(payload);
+        expect(userCreated.error).toMatch(/el payload recibido no es válido/);
     });
 });
